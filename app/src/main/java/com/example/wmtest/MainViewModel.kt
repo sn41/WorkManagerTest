@@ -32,11 +32,11 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     // Запуск отлложенной задачи!!!
     fun startSync(url: String) {
         // 1. Упаковываем данные
-        val inputData = workDataOf("KEY_URL" to url)
+        val inputData = workDataOf(KEY_INPUT_URL to url)
 
         // 2. Создаем запрос (OneTimeWorkRequest)
         // Добавим тег, чтобы можно было найти задачу по имени, если нужно
-        val request = OneTimeWorkRequestBuilder<SyncWorker>()
+        val request: OneTimeWorkRequest = OneTimeWorkRequestBuilder<SyncWorker>()
             .setInputData(inputData)
             .addTag("SYNC_TAG")
             .build()
